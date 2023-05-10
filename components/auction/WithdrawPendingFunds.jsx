@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withdrawPendingFunds } from './path/to/your/contract/functions';
+import { withdrawPendingFunds } from '../../hooks/contracts/FuseAuction';
 
 const WithdrawPendingFunds = () => {
   const [auctionId, setAuctionId] = useState('');

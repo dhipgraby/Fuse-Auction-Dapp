@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { bid } from './path/to/your/contract/functions';
+import { bid } from '../../hooks/contracts/FuseAuction';
 
 const BidNativeToken = () => {
   const [auctionId, setAuctionId] = useState('');
@@ -25,7 +25,7 @@ const BidNativeToken = () => {
         value={bidAmount}
         onChange={(e) => setBidAmount(e.target.value)}
       />
-      <button type="submit">Bid</button>
+      <button className='success-btn' type="submit">Bid</button>
     </form>
   );
 };

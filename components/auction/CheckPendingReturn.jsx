@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { checkPendingReturn } from './path/to/your/contract/functions';
+import { checkPendingReturn } from '../../hooks/contracts/FuseAuction';
 
 const CheckPendingReturn = () => {
   const [userAddress, setUserAddress] = useState('');

@@ -5,6 +5,7 @@ export default function Navbar() {
 		<nav className={styles.navbar}>
 			<a href="/nftview">NFT Contract</a>
 			<a href="/token">ERC20 Contract</a>
+			<a href="/auction">AUCTION</a>
 			<div>
 				<ConnectButton></ConnectButton>
 			</div>

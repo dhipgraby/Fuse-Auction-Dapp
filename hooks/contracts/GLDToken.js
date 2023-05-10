@@ -1,7 +1,6 @@
 import { ethers } from 'ethers';
 import GLDTokenABI from './GLDTokenABI.json';
-
-const GLDTokenAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+import { GLDTokenAddress } from './ContractAddresses';
 
 // Connect to Ethereum provider
 export const connectToEthereum = async () => {

@@ -1,38 +1,34 @@
 import { ethers } from 'ethers';
 import NFTMockABI from './NFTMock.json';
-
-const NFT_ContractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+import { NFT_ContractAddress } from './ContractAddresses';
 
 // Connect to Ethereum provider
-export const connectWallet = async () => {
-    if (window.ethereum) {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        return provider;
-    } else {
-        throw new Error('No Ethereum provider found');
-    }
-};
-
-// Get the NFTMock contract instance
-export const getNFTMockContract = async (provider) => {
+async function connectContract() {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const NFTMockContract = new ethers.Contract(
-        NFT_ContractAddress,
-        NFTMockABI,
-        signer
-    );
-    return NFTMockContract;
-};
+    const nftContract = new ethers.Contract(NFT_ContractAddress, NFTMockABI, provider);
+
+    return { signer, nftContract }
+}
 
 // Mint an NFT token to an address using safeMint function
-export const safeMint = async (contract, to) => {
-    const tx = await contract.safeMint(to);
+export const safeMint = async (to) => {
+    const { nftContract } = await connectContract()
+    const tx = await nftContract.fuseAuctionContract(to);
     await tx.wait();
 };
 
 // Mint an NFT token with a specific token ID to an address using mint function
-export const mintWithTokenId = async (contract, to, tokenId) => {
-    const tx = await contract.mint(to, tokenId);
+export const mintWithTokenId = async (to, tokenId) => {
+    const { nftContract } = await connectContract()
+    const tx = await nftContract.mint(to, tokenId);
+    await tx.wait();
+};
+
+//Approve of all
+export const approveForAll = async (contract, address) => {
+    const { nftContract } = await connectContract()
+    const tx = await nftContract.setApprovalForAll(address, "true");
     await tx.wait();
 };

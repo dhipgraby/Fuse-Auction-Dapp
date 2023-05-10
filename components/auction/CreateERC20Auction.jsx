@@ -28,6 +28,7 @@ const CreateERC20Auction = () => {
                 value={biddingTime}
                 onChange={(e) => setBiddingTime(e.target.value)}
             />
+            <br />
             <input
                 type="text"
                 placeholder="Minimum Bid"
@@ -46,7 +47,7 @@ const CreateERC20Auction = () => {
                 value={tokenAddress}
                 onChange={(e) => setTokenAddress(e.target.value)}
             />
-            <button type="submit">Create Auction</button>
+            <button className="primary-btn" type="submit">Create Auction</button>
         </form>
     );
 };

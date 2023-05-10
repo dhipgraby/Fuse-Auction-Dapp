@@ -1,25 +1,21 @@
-//ALL FUNCTIONS FROM AUCTION CONTRACT
-
 //ABI
 import FuseAuctionABI from './FuseAuctionABI.json';
-
-//CONTRACT ADDRESSE
-const fuseAuctionAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0';
-
+import { fuseAuctionAddress } from './ContractAddresses';
 import { ethers } from 'ethers';
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-const fuseAuctionContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
-
-export async function connectWallet() {
+async function connectContract() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const fuseAuctionContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
+
+    return { signer, fuseAuctionContract }
 }
 
 // CREATE ACTIONS
 
 export async function createNativeAuction(itemId, biddingTime, minimumBid, nftContract) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
 
     try {
@@ -32,9 +28,8 @@ export async function createNativeAuction(itemId, biddingTime, minimumBid, nftCo
 
 // CREATE ERC20 AUCTION
 export async function createERC20Auction(itemId, biddingTime, minimumBid, nftContract, tokenAddress) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
-
     try {
         const tx = await contractWithSigner.createERC20Auction(itemId, biddingTime, minimumBid, nftContract, tokenAddress);
         console.log('Transaction sent:', tx);
@@ -45,7 +40,7 @@ export async function createERC20Auction(itemId, biddingTime, minimumBid, nftCon
 
 //BIT NATIVE TOKEN
 export async function bid(auctionId, bidAmount) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
 
     try {
@@ -58,7 +53,7 @@ export async function bid(auctionId, bidAmount) {
 
 //BID ERC20 TOKEN
 export async function bidERC20(auctionId, bidAmount) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
 
     try {
@@ -72,6 +67,7 @@ export async function bidERC20(auctionId, bidAmount) {
 //GETTERS FOR AUCTION
 
 export async function fetchMarketAuctions() {
+    const { fuseAuctionContract } = await connectContract();
     try {
         const auctions = await fuseAuctionContract.fetchMarketAuctions();
         console.log('Auctions:', auctions);
@@ -81,21 +77,52 @@ export async function fetchMarketAuctions() {
 }
 
 export async function getAuctionId() {
+    const { fuseAuctionContract } = await connectContract();
     try {
         const auctionId = await fuseAuctionContract.getAuctionId();
-        console.log('Auction ID:', auctionId);
-    } catch (error) {
+        return auctionId;
+    }
+    catch (error) {
         console.error('Error fetching auction ID:', error);
     }
 }
 
+// GET BY ID
+export async function getAuction(auctionId) {
+    const { fuseAuctionContract } = await connectContract();
+    try {
+        const auction = await fuseAuctionContract.auctionsMapping(auctionId);
+
+        const nftId = auction.itemId.toString()
+        const highestBid = auction.highestBid.toString()
+        const auctionEndTime = auction.auctionEndTime
+
+
+        const current = {
+            owner: auction.seller,
+            nftContract: auction.nftContract,
+            tokenContract: (auction.ERC20Contract == 0x0000000000000000000000000000000000000000) ? 'No ERC20 auction' : auction.ERC20Contract,
+            nftId: nftId,
+            highestBid: ethers.utils.formatEther(highestBid),
+            highestBidder: (auction.highestBidder == 0x0000000000000000000000000000000000000000) ? 'No bidder' : auction.highestBidder,
+            auctionEndTime: auctionEndTime,
+            ended: auction.ended,
+            isERC20: auction.isERC20,
+        }
+
+        console.log(current);
+
+        return current
+    } catch (error) {
+        console.error('Error fetching auction details:', error);
+    }
+}
 
 //CLAIM AUCTION
 
 export async function claimAuction(auctionId) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract()
     const contractWithSigner = fuseAuctionContract.connect(signer);
-
     try {
         const tx = await contractWithSigner.claimAuction(auctionId);
         console.log('Transaction sent:', tx);
@@ -104,21 +131,10 @@ export async function claimAuction(auctionId) {
     }
 }
 
-export async function getAuction(auctionId) {
-    try {
-        const auction = await fuseAuctionContract.getAuction(auctionId);
-        console.log('Auction details:', auction);
-    } catch (error) {
-        console.error('Error fetching auction details:', error);
-    }
-}
-
-
-
 //WITHDRAW
 
 export async function withdrawPendingReturns() {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
 
     try {
@@ -130,7 +146,7 @@ export async function withdrawPendingReturns() {
 }
 
 export async function withdrawPendingFunds(auctionId) {
-    const signer = provider.getSigner();
+    const { signer, fuseAuctionContract } = await connectContract();
     const contractWithSigner = fuseAuctionContract.connect(signer);
 
     try {

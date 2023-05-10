@@ -7,12 +7,27 @@ body {
 	font-family: 'Nunito', sans-serif;
 	min-height: 100vh;
 	color: white;
+	font-weight: 500;
 }
 
+hr {
+	height: 1px;
+	background-color: grey;
+	border: none;
+	margin: 20px 0px;
+
+}
 
 h1 {
 	color: white;
 	font-weight: 400;
+	margin-bottom: 25px;
+}
+
+h2 {
+	margin-bottom: 10px;
+	margin-top: 15px;
+	font-weight: 500;
 }
 
 a {
@@ -33,7 +48,7 @@ p {
 
 button {
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: 500;
 	padding: 8px 20px;
 	border-radius: 8px;
 	margin: 5px;
@@ -46,4 +61,34 @@ input {
 	border-radius: 8px !important;
 	margin: 5px !important;
 	border: none !important;
+}
+
+.badge-dark {
+	background-color: black !important;
+	padding: 5px 10px;
+	border-radius: 20px;
+	color: white;
+	margin-left: 10px;
+	width: fit-content;
+}
+
+.success-btn {
+	letter-spacing: 1px;
+	background-color: green !important;
+	text-shadow: 1px 1px 5px black;
+	color: white !important;
+}
+
+.primary-btn {
+	letter-spacing: 1px;
+	background-color: #c97539 !important;
+	text-shadow: 1px 1px 5px black;
+	color: white !important;
+}
+
+.blue-btn {
+	letter-spacing: 1px;
+	background-color: #3977c9 !important;
+	text-shadow: 1px 1px 5px black;
+	color: white !important;
 }

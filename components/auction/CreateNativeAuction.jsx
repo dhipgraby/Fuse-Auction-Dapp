@@ -13,6 +13,7 @@ const CreateNativeAuction = () => {
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
       <h2>Create Native Auction</h2>
       <input
@@ -27,6 +28,7 @@ const CreateNativeAuction = () => {
         value={biddingTime}
         onChange={(e) => setBiddingTime(e.target.value)}
       />
+      <br />
       <input
         type="text"
         placeholder="Minimum Bid"
@@ -39,8 +41,9 @@ const CreateNativeAuction = () => {
         value={nftContract}
         onChange={(e) => setNftContract(e.target.value)}
       />
-      <button type="submit">Create Auction</button>
+      <button className="primary-btn" type="submit">Create Auction</button>
     </form>
+
   );
 };
 

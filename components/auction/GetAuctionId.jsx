@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
-import { getAuctionId } from './path/to/your/contract/functions';
+import React, { useEffect, useState } from 'react';
+import { getAuctionId } from '../../hooks/contracts/FuseAuction';
 
 const GetAuctionId = () => {
-  useEffect(() => {
-    getAuctionId();
-  }, []);
 
+  const [auctionId, setAuctionId] = useState("")
+
+  useEffect(() => {
+    async function fetchAuctionId() {
+      const currentId = await getAuctionId();
+      setAuctionId(currentId);
+    }
+
+    fetchAuctionId();
+  }, []);
   return (
     <div>
-      <h2>Auction ID</h2>
+      <p>Current Auction ID:
+        
+        <small className='badge-dark'>{auctionId}</small></p>
       {/* Display auction ID here */}
     </div>
   );

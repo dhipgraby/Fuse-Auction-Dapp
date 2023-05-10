@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
-import { fetchMarketAuctions } from './path/to/your/contract/functions';
+import React, { useEffect, useState } from 'react';
+import { fetchMarketAuctions } from '../../hooks/contracts/FuseAuction';
 
 const FetchMarketAuctions = () => {
+
+  const [allAuctions, setAllAuctions] = useState(null)
+
   useEffect(() => {
-    fetchMarketAuctions();
+    async function allAuctions() {
+      await fetchMarketAuctions();
+    }
+    allAuctions()
   }, []);
 
   return (
     <div>
       <h2>Market Auctions</h2>
-      {/* Display auctions data here */}
+
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { claimAuction } from './path/to/your/contract/functions';
+import { claimAuction } from '../../hooks/contracts/FuseAuction';
 
 const ClaimAuction = () => {
     const [auctionId, setAuctionId] = useState('');
@@ -17,7 +17,7 @@ const ClaimAuction = () => {
                 placeholder="Auction ID" value={auctionId}
                 onChange={(e) => setAuctionId(e.target.value)}
             />
-            <button type="submit">Claim</button>
+            <button className='success-btn' type="submit">Claim</button>
         </form>
     );
 };

@@ -8,6 +8,7 @@ import {
   approve,
   accountAllowance
 } from "../../hooks/contracts/GLDToken";
+import { GLDTokenAddress } from "../../hooks/contracts/ContractAddresses";
 
 const TokenInterface = () => {
   const [account, setAccount] = useState("");
@@ -59,8 +60,7 @@ const TokenInterface = () => {
   return (
     <div>
       <h1>ERC20 Contract</h1>
-      <p>Address:</p>
-
+      <p>Contract Address: {GLDTokenAddress} </p>
       {/* Add your UI components and event handlers here */}
       <input
         type="text"
