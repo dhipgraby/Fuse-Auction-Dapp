@@ -1,24 +1,15 @@
 import "../styles/globals.css";
+import "../styles/styles.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
-import {
-	mainnet,
-	polygon,
-	optimism,
-	arbitrum,
-	goerli,
-	polygonMumbai,
-	optimismGoerli,
-	arbitrumGoerli,
-	polygonZkEvm,
-	polygonZkEvmTestnet,
-} from "wagmi/chains";
+import { mainnet, polygon, goerli, polygonMumbai, hardhat } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import MainLayout from "../layout/mainLayout";
 import { useRouter } from "next/router";
+
 
 const { chains, provider } = configureChains(
 	[
@@ -26,18 +17,13 @@ const { chains, provider } = configureChains(
 		goerli,
 		polygon,
 		polygonMumbai,
-		optimism,
-		optimismGoerli,
-		arbitrum,
-    arbitrumGoerli,
-    polygonZkEvm,
-    polygonZkEvmTestnet
+		hardhat
 	],
 	[alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-	appName: "My Alchemy DApp",
+	appName: "Fuse Auction",
 	chains,
 });
 
@@ -45,6 +31,7 @@ const wagmiClient = createClient({
 	autoConnect: true,
 	connectors,
 	provider,
+	hardhat
 });
 
 export { WagmiConfig, RainbowKitProvider };

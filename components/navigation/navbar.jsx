@@ -3,10 +3,11 @@ import styles from "../../styles/Navbar.module.css";
 export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
-			<a href="https://alchemy.com/?a=create-web3-dapp" target={"_blank"}>
-				<img className={styles.alchemy_logo} src="/cw3d-logo.png"></img>
-			</a>
-			<ConnectButton></ConnectButton>
+			<a href="/nftview">NFT Contract</a>
+			<a href="/token">ERC20 Contract</a>
+			<div>
+				<ConnectButton></ConnectButton>
+			</div>
 		</nav>
 	);
 }

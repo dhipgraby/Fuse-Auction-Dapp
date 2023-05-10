@@ -1,0 +1,195 @@
+/* MARGIN */
+
+.mw-10 {
+    max-width: 10px;
+}
+
+.mw-20 {
+    max-width: 20px;
+}
+
+.mw-30 {
+    max-width: 30px;
+}
+
+.mw-40 {
+    max-width: 40px;
+}
+
+.mw-50 {
+    max-width: 50px;
+}
+
+.mw-60 {
+    max-width: 60px;
+}
+
+.mw-70 {
+    max-width: 70px;
+}
+
+.mw-80 {
+    max-width: 80px;
+}
+
+.mw-90 {
+    max-width: 90px;
+}
+
+.mw-100 {
+    max-width: 100px;
+}
+
+.mw-150 {
+    max-width: 150px;
+}
+
+.mw-200 {
+    max-width: 200px;
+}
+
+.mw-250 {
+    max-width: 250px;
+}
+
+.mw-300 {
+    max-width: 300px;
+}
+
+.mw-350 {
+    max-width: 350px;
+}
+
+.mx-400 {
+    max-width: 400px;
+}
+
+
+/* ALIGNMENT */
+
+.ta-c {
+    text-align: -webkit-center;
+    text-align: center;
+}
+
+.ta-r {
+    text-align: -webkit-right;
+    text-align: right;
+}
+
+.ta-l {
+    text-align: -webkit-left;
+    text-align: left;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.h-fit {
+    height: fit-content;
+}
+
+.h-80 {
+    height: 80vh;
+}
+
+.min-h-20 {
+    min-height: 20vh;
+}
+
+.min-h-25 {
+    min-height: 25vh;
+}
+
+.min-h-30 {
+    min-height: 30vh;
+}
+
+.min-h-35 {
+    min-height: 35vh;
+}
+
+.min-h-40 {
+    min-height: 40vh;
+}
+
+.min-h-45 {
+    min-height: 45vh;
+}
+
+.min-h-50 {
+    min-height: 50vh;
+}
+
+.min-h-60 {
+    min-height: 60vh;
+}
+
+.min-h-70 {
+    min-height: 70vh;
+}
+
+.min-h-80 {
+    min-height: 80vh;
+}
+
+.max-h-80 {
+    min-height: 80vh;
+}
+
+.min-h-85 {
+    min-height: 85vh;
+}
+
+.min-h-85 {
+    min-height: 85vh;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-y {
+    overflow-y: scroll;
+}
+
+.sal-end {
+    align-self: end;
+}
+
+.t-dark {
+    color: #494949;
+}
+
+/* POSITION */
+
+.p-relative {
+    position: relative;
+}
+
+.p-absolute {
+    position: absolute;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.valign-middle {
+    display: table !important;
+}
+
+.valign-middle div:first-child {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.valign-bottom {
+    display: table !important;
+}
+
+.valign-bottom div:first-child {
+    display: table-cell;
+    vertical-align: bottom;
+}

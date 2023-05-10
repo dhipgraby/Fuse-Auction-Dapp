@@ -1,8 +1,6 @@
-
-
 .navbar {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	width: 100%;
 	padding: 2rem 4rem 0.8rem 4rem;
@@ -10,8 +8,18 @@
 	margin-bottom: 4rem;
 }
 
+.navbar a {
+	color: white;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	border-radius: 50px;
+	border: solid 1px white;
+	padding: 8px 20px;
+}
 
-.alchemy_logo{
-	width: 6rem;
-	cursor: pointer;
+.navbar a:hover {
+	color: white !important;
+	background-color: black;
+	border: solid 1px black;
 }

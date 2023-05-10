@@ -1,29 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
 
 html,
 body {
-	background-color: black;
-	font-family: 'Rubik';
-	font-weight: normal;
-}
-h1{
-	margin-bottom: 1rem;
-}
-h2{
-	margin-bottom: .5rem;
-	font-weight: normal;
-
+	background: linear-gradient(30deg, rgb(46, 50, 93), black);
+	background-repeat: no-repeat;
+	font-family: 'Nunito', sans-serif;
+	min-height: 100vh;
+	color: white;
 }
 
-p{
-	line-height: 1.5rem;
-	font-weight: lighter;
 
+h1 {
+	color: white;
+	font-weight: 400;
 }
 
 a {
 	color: inherit;
-	text-decoration: none;
+	text-decoration: none !important;
+}
+
+p {
+	font-size: 16px;
+	color: white;
 }
 
 * {
@@ -32,7 +31,19 @@ a {
 	margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-	html {
-	}
+button {
+	font-size: 16px;
+	font-weight: 600;
+	padding: 8px 20px;
+	border-radius: 8px;
+	margin: 5px;
+	border: none;
+	cursor: pointer;
+}
+
+input {
+	padding: 10px 20px !important;
+	border-radius: 8px !important;
+	margin: 5px !important;
+	border: none !important;
 }

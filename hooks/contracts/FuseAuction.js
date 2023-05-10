@@ -4,15 +4,13 @@
 import FuseAuctionABI from './FuseAuctionABI.json';
 
 //CONTRACT ADDRESSE
-const fuseAuctionAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
+const fuseAuctionAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0';
 
 import { ethers } from 'ethers';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 const fuseAuctionContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
-const nftContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
-const erc20Contract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
 
 export async function connectWallet() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });

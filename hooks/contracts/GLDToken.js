@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import GLDTokenABI from './GLDTokenABI.json';
 
-const GLDTokenAddress = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0';
+const GLDTokenAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
 
 // Connect to Ethereum provider
 export const connectToEthereum = async () => {
@@ -15,7 +15,7 @@ export const connectToEthereum = async () => {
 };
 
 // Get the GLDToken contract instance
-export const getGLDTokenContract = async (provider, contractAddress) => {
+export const getGLDTokenContract = async (provider) => {
   const signer = provider.getSigner();
   const GLDTokenContract = new ethers.Contract(
     GLDTokenAddress,
@@ -31,14 +31,27 @@ export const getBalance = async (contract, account) => {
   return balance;
 };
 
-// Mint tokens to an address
-export const mintTokens = async (contract, to, amount) => {
-  const tx = await contract.mint(to, amount);
-  await tx.wait();
-};
-
 // Approve a spender for an ERC20 token
 export const approveForAll = async (contract, tokenAddress, spender) => {
   const tx = await contract.approveForAll(tokenAddress, spender);
   await tx.wait();
+};
+
+// Approve a spender for an ERC20 token
+export const approve = async (contract, account, amount) => {
+  const tx = await contract.approve(account, amount);
+  await tx.wait();
+};
+
+// Mint tokens to an address
+// Approve a spender for an ERC20 token
+export const mintTokens = async (contract, account, amount) => {
+  const tx = await contract.transfer(account, amount);
+  await tx.wait();
+};
+
+// CHECK ALLOWANCE
+export const accountAllowance = async (contract, owner, address) => {
+  const allowance = await contract.allowance(owner, address);
+  return allowance.toString()
 };
