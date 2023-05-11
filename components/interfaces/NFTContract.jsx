@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { safeMint, approveForAll,NFT_ContractAddress } from "../../hooks/contracts/NFTContract";
+import { safeMint, approveForAll } from "../../hooks/contracts/NFTContract";
+import { NFT_ContractAddress } from "../../hooks/contracts/ContractAddresses";
 
 const NFTContract = () => {
     const [recipientAddress, setRecipientAddress] = useState("");
@@ -24,7 +25,6 @@ const NFTContract = () => {
 
     return (
         <div>
-
             <h1>NFT Contract</h1>
             <p>Contract address : {NFT_ContractAddress}</p>
             {/* Add your UI components and event handlers here */}

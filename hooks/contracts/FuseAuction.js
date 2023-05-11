@@ -7,7 +7,7 @@ async function connectContract() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const fuseAuctionContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, provider);
+    const fuseAuctionContract = new ethers.Contract(fuseAuctionAddress, FuseAuctionABI, signer);
 
     return { signer, fuseAuctionContract }
 }
@@ -161,9 +161,12 @@ export async function withdrawPendingFunds(auctionId) {
 
 //CHECK PENDING NATIVE TOKEN FUNDS FOR BIDDERS THAT NOT WIN
 export async function checkPendingReturn(userAddress) {
+    const { fuseAuctionContract } = await connectContract();
     try {
-        const pendingReturn = await fuseAuctionContract.checkPendingReturn(userAddress);
-        console.log('Pending return for', userAddress, ':', ethers.utils.formatEther(pendingReturn));
+        const pendingReturn = await fuseAuctionContract.pendingReturns(userAddress);
+        const funds = ethers.utils.formatEther(pendingReturn)
+        console.log('Pending return for', userAddress, ':', funds);
+        return funds;
     } catch (error) {
         console.error('Error checking pending return:', error);
     }

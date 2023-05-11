@@ -3,9 +3,11 @@ import { checkPendingReturn } from '../../hooks/contracts/FuseAuction';
 
 const CheckPendingReturn = () => {
   const [userAddress, setUserAddress] = useState('');
+  const [pendings, setPendings] = useState('');
 
   const handleCheck = async () => {
-    await checkPendingReturn(userAddress);
+    const funds = await checkPendingReturn(userAddress);
+    setPendings(funds)
   };
 
   return (
@@ -18,6 +20,9 @@ const CheckPendingReturn = () => {
         onChange={(e) => setUserAddress(e.target.value)}
       />
       <button onClick={handleCheck}>Check</button>
+      {(pendings) && (
+        <p>Pending Amount: {pendings}</p>
+      )}
     </div>
   );
 };

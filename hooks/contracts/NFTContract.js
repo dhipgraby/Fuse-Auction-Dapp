@@ -7,7 +7,7 @@ async function connectContract() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const nftContract = new ethers.Contract(NFT_ContractAddress, NFTMockABI, provider);
+    const nftContract = new ethers.Contract(NFT_ContractAddress, NFTMockABI, signer);
 
     return { signer, nftContract }
 }
@@ -15,7 +15,7 @@ async function connectContract() {
 // Mint an NFT token to an address using safeMint function
 export const safeMint = async (to) => {
     const { nftContract } = await connectContract()
-    const tx = await nftContract.fuseAuctionContract(to);
+    const tx = await nftContract.safeMint(to);
     await tx.wait();
 };
 
@@ -27,7 +27,7 @@ export const mintWithTokenId = async (to, tokenId) => {
 };
 
 //Approve of all
-export const approveForAll = async (contract, address) => {
+export const approveForAll = async (address) => {
     const { nftContract } = await connectContract()
     const tx = await nftContract.setApprovalForAll(address, "true");
     await tx.wait();

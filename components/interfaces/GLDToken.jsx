@@ -20,15 +20,11 @@ const TokenInterface = () => {
   const [ownerAddr, setOwnerAddr] = useState("")
   const [allowance, setAllowance] = useState("");
 
-  const addr1 = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
-  const addr2 = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
-
   const handleGetBalance = async () => {
     const provider = await connectToEthereum();
     const contract = await getGLDTokenContract(provider);
     const balance = await getBalance(contract, account);
     setBalance(balance.toString())
-    console.log("Balance:", balance.toString());
   };
 
   const handleMintTokens = async () => {
@@ -60,7 +56,7 @@ const TokenInterface = () => {
   return (
     <div>
       <h1>ERC20 Contract</h1>
-      <p>Contract Address: {GLDTokenAddress} </p>
+      <p className="mb-2">Contract Address: <span className="badge-dark">{GLDTokenAddress}</span> </p>
       {/* Add your UI components and event handlers here */}
       <input
         type="text"

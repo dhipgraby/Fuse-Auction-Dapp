@@ -12,7 +12,8 @@ import WithdrawPendingReturns from './auction/WithdrawPendingReturns';
 import WithdrawPendingFunds from './auction/WithdrawPendingFunds';
 import CheckPendingReturn from './auction/CheckPendingReturn';
 import CheckPendingFund from './auction/CheckPendingFund';
-import { fuseAuctionAddress } from '../hooks/contracts/ContractAddresses';
+import { fuseAuctionAddress, NFT_ContractAddress, GLDTokenAddress } from '../hooks/contracts/ContractAddresses';
+
 
 const AuctionComponents = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -79,7 +80,11 @@ const AuctionComponents = () => {
     return (
         <div>
             <h1>Fuse Auction DApp</h1>
-            <p>Contract Address : {fuseAuctionAddress}</p>
+            <div className='mb-2'>
+            <p className='mb-2'>Fuse Contract Address : <span className='badge-dark'>{fuseAuctionAddress}</span></p>
+            <p className='mb-2'>NFT Contract Address : <span className='badge-dark'>{NFT_ContractAddress}</span></p>
+            <p className='mb-2'>Token Contract Address : <span className='badge-dark'>{GLDTokenAddress}</span></p>
+            </div>
             <div className="tabs">
                 {tabs.map((tab, index) => (
                     <button
