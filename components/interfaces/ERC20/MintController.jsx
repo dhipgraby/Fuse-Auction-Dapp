@@ -11,7 +11,7 @@ const MintController = ({
     };
     return (
         <>
-        <small>Transfer tokens from owner account</small>
+        <small>Mint <b>ERC20 GLD Token</b> to an account</small>
             <div className="row">
 
                 <input

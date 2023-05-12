@@ -1,13 +1,13 @@
 ## Fuse Auction Dapp 🎮
 
-FuseAuction is a decentralized auction platform built on Ethereum that allows users to create auctions for NFTs and bid using either native Fuse or ERC20 tokens. The contract interacts with both NFT and ERC20 contracts to ensure seamless auction creation and bidding.
+FuseAuction is a decentralized auction platform built on Fuse Sparknet Testnet that allows users to create auctions for NFTs and bid using either native Fuse or ERC20 tokens. The contract interacts with both NFT and ERC20 contracts to ensure seamless auction creation and bidding.
 
 ## Live Dapp version on Vercel - Fuse Sparknet testnet 🚀
 
 Live Vercel application here 👉: [Live Fuse Auction](https://fuse-auction-dapp.vercel.app/)
 
 Notes: 
-- You will need to use Deployer address from ERC20 and NFT contract to be able to mint.
+- You can mint free nfts from nft contract and mint erc20 tokens from ERC20 contract
 - Add Fuse Sparknet to metamask & Switch
 
 You can add it atomatically from : 
@@ -55,9 +55,9 @@ Required addresses:
 
 **Before using: 🔍**
 
-- Mint nft from Deployer address
+- Mint nft from any address
 - ApproveForAll Auction contract address in NFT contract
-- Send ERC20 to each bidder addresses you wish
+- Mint ERC20 to each bidder addresses you wish
 - Approve spend amount from each bidder address to Auction contract, so it can move the ERC20 tokens. 
 
 **Creating an auction**

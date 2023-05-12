@@ -34,7 +34,7 @@ class GLDToken {
 
   async mintTokens(account, amount) {
     if (!this.tokenContract) await this.connect();
-    const tx = await this.tokenContract.transfer(account, amount);
+    const tx = await this.tokenContract.mint(account, amount);
     await tx.wait();
   }
 
