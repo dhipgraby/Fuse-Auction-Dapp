@@ -49,6 +49,7 @@ export default class FuseAuctionContract {
     async fetchMarketAuctions() {
         await this.checkConnect();
         const auctions = await this.contract.fetchMarketAuctions();
+        console.log(auctions);
         return auctions;
     }
 
