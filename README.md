@@ -2,6 +2,23 @@
 
 FuseAuction is a decentralized auction platform built on Ethereum that allows users to create auctions for NFTs and bid using either native Fuse or ERC20 tokens. The contract interacts with both NFT and ERC20 contracts to ensure seamless auction creation and bidding.
 
+## Live Dapp version on Vercel - Fuse Sparknet testnet 🚀
+
+[Live Fuse Auction](https://fuse-auction-dapp.vercel.app/)
+
+Notes: 
+- You will need to import Deployer address to Metamask using PRIV_KEY "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"   
+- Add Fuse Sparknet to metamask & Switch
+
+You can add it atomatically from : 
+
+[ChainList Fuse Spark](https://chainlist.org/chain/123)
+
+or manually from [Fuse Website - Network Details](https://docs.fuse.io/docs/basics/getting-started-with-fuse/network-details)
+[FuseAuction Solidity Smart Contracts](https://github.com/dhipgraby/FuseAuction)
+
+Use Faucet to get testnet funds if need from [Sparknet Faucet](https://get.fusespark.io/)
+
 ## Table of Contents
 - Features
 - Installation
@@ -94,5 +111,4 @@ Containing all what is need to deploy your own Auction contracts.
 Follow installation instructions to deploy your own contracts for the **Fuse Auction Dapp**
 
 [FuseAuction Solidity Smart Contracts](https://github.com/dhipgraby/FuseAuction)
-
 
