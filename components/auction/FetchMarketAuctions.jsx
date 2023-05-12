@@ -42,21 +42,30 @@ const FetchMarketAuctions = ({
 
       {(allAuctions != null) && (
         <>
-          {allAuctions.map(auction => {
+          {allAuctions.map((auction, i) => {
             if (auction.owner !== "0x0000000000000000000000000000000000000000")
-              return (<div className='mt-1 badge-dark p-2'>
-                <p>Owner: {auction.owner}</p>
-                <p>NFT Contract: {auction.nftContract}</p>
-                <p>Token Contract: {auction.tokenContract}</p>
-                <p>NFT ID: {auction.nftId}</p>
-                <p>Highest Bid: {auction.highestBid}</p>
-                <p>Highest Bidder: {auction.highestBidder}</p>
-                <p>
-                  Auction End Time: {auction.auctionEndTime.toString()}
-                </p>
-                <p>Ended: {auction.ended ? "Yes" : "No"}</p>
-                <p>Is ERC20: {auction.isERC20 ? "Yes" : "No"}</p>
-              </div>)
+              return (
+                <>
+                  <div className='mt-2'>
+                  <b>Auction Id:</b>
+                  <br />
+                  <small>{ids[i]}</small>
+                  </div>
+                  <div className='mt-1 badge-dark p-2'>
+                    <p>Owner: {auction.owner}</p>
+                    <p>NFT Contract: {auction.nftContract}</p>
+                    <p>Token Contract: {auction.tokenContract}</p>
+                    <p>NFT ID: {auction.nftId}</p>
+                    <p>Highest Bid: {auction.highestBid}</p>
+                    <p>Highest Bidder: {auction.highestBidder}</p>
+                    <p>
+                      Auction End Time: {auction.auctionEndTime.toString()}
+                    </p>
+                    <p>Ended: {auction.ended ? "Yes" : "No"}</p>
+                    <p>Is ERC20: {auction.isERC20 ? "Yes" : "No"}</p>
+                  </div>
+                </>
+              )
           })}
 
         </>
