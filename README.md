@@ -15,7 +15,6 @@ You can add it atomatically from :
 [ChainList Fuse Spark](https://chainlist.org/chain/123)
 
 or manually from [Fuse Website - Network Details](https://docs.fuse.io/docs/basics/getting-started-with-fuse/network-details)
-[FuseAuction Solidity Smart Contracts](https://github.com/dhipgraby/FuseAuction)
 
 Use Faucet to get testnet funds if need from [Sparknet Faucet](https://get.fusespark.io/)
 
