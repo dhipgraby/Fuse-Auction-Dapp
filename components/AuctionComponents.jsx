@@ -13,9 +13,18 @@ import WithdrawPendingFunds from './auction/WithdrawPendingFunds';
 import CheckPendingReturn from './auction/CheckPendingReturn';
 import CheckPendingFund from './auction/CheckPendingFund';
 import { fuseAuctionAddress, NFT_ContractAddress, GLDTokenAddress } from '../hooks/contracts/ContractAddresses';
-
+import FuseAuctionContract from '../hooks/contracts/FuseAuction';
 
 const AuctionComponents = () => {
+
+    const auctionContract = new FuseAuctionContract();
+
+    useEffect(() => {
+        (async () => {
+            await auctionContract.connect();
+        })();
+    }, []);
+
     const [activeTab, setActiveTab] = useState(0);
 
     const tabs = [
@@ -32,44 +41,44 @@ const AuctionComponents = () => {
             case 0:
                 return (
                     <>
-                        <GetAuctionId />
-                        <GetAuction />
+                        <GetAuctionId auctionContract={auctionContract} />
+                        <GetAuction auctionContract={auctionContract} />
                     </>
                 )
             case 1:
                 return (
                     <>
-                        <CreateNativeAuction />
-                        <CreateERC20Auction />
+                        <CreateNativeAuction auctionContract={auctionContract} />
+                        <CreateERC20Auction auctionContract={auctionContract} />
                     </>
                 );
             case 2:
                 return (
                     <>
-                        <BidNativeToken />
-                        <BidERC20Token />
+                        <BidNativeToken auctionContract={auctionContract} />
+                        <BidERC20Token auctionContract={auctionContract} />
                     </>
                 );
             case 3:
                 return (
                     <>
-                        <ClaimAuction />
-                        <WithdrawPendingReturns />
-                        <WithdrawPendingFunds />
+                        <ClaimAuction auctionContract={auctionContract} />
+                        <WithdrawPendingReturns auctionContract={auctionContract} />
+                        <WithdrawPendingFunds auctionContract={auctionContract} />
                     </>
                 );
             case 4:
                 return (
                     <>
-                        <CheckPendingReturn />
-                        <CheckPendingFund />
+                        <CheckPendingReturn auctionContract={auctionContract} />
+                        <CheckPendingFund auctionContract={auctionContract} />
                     </>
                 );
             case 5:
                 return (
                     <>
                         <h1>All Auction</h1>
-                        <FetchMarketAuctions />
+                        <FetchMarketAuctions auctionContract={auctionContract} />
                     </>
                 );
             default:
@@ -81,16 +90,16 @@ const AuctionComponents = () => {
         <div>
             <h1>Fuse Auction DApp</h1>
             <div className='mb-2'>
-            <p className='mb-2'>Fuse Contract Address : <span className='badge-dark'>{fuseAuctionAddress}</span></p>
-            <p className='mb-2'>NFT Contract Address : <span className='badge-dark'>{NFT_ContractAddress}</span></p>
-            <p className='mb-2'>Token Contract Address : <span className='badge-dark'>{GLDTokenAddress}</span></p>
+                <p className='mb-2'>Fuse Contract Address : <span className='badge-dark'>{fuseAuctionAddress}</span></p>
+                <p className='mb-2'>NFT Contract Address : <span className='badge-dark'>{NFT_ContractAddress}</span></p>
+                <p className='mb-2'>Token Contract Address : <span className='badge-dark'>{GLDTokenAddress}</span></p>
             </div>
             <div className="tabs">
                 {tabs.map((tab, index) => (
                     <button
                         key={index}
                         onClick={() => setActiveTab(index)}
-                        className={index === activeTab ? 'active' : ''}
+                        className={`tap-btn ` + (index === activeTab ? 'activeTap' : '')}
                     >
                         {tab}
                     </button>

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { bidERC20 } from '../../hooks/contracts/FuseAuction';
 
-
-const BidERC20Token = () => {
+const BidERC20Token = ({ auctionContract }) => {
   const [auctionId, setAuctionId] = useState('');
   const [bidAmount, setBidAmount] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await bidERC20(auctionId, bidAmount);
+    try {
+      await auctionContract.bidERC20(auctionId, bidAmount);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

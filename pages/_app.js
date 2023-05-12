@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import "../styles/styles.css";
 import "@rainbow-me/rainbowkit/styles.css";
-
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
 import { mainnet, polygon, goerli, polygonMumbai, hardhat } from "wagmi/chains";
@@ -10,6 +9,25 @@ import { publicProvider } from "wagmi/providers/public";
 import MainLayout from "../layout/mainLayout";
 import { useRouter } from "next/router";
 
+// Create a custom provider for Ganache
+const ganache = {
+	id: 1337,
+	name: "Ganache",
+	network: "Ganache",
+	nativeCurrency: {
+	  decimals: 18,
+	  name: "Ether",
+	  symbol: "ETH",
+	},
+	rpcUrls: {
+	  default: {
+		http: ["http://127.0.0.1:8545"],
+	  },
+	  public: {
+		http: ["http://127.0.0.1:8545"],
+	  },
+	},
+  };
 
 const { chains, provider } = configureChains(
 	[
@@ -17,7 +35,8 @@ const { chains, provider } = configureChains(
 		goerli,
 		polygon,
 		polygonMumbai,
-		hardhat
+		hardhat,
+		ganache
 	],
 	[alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
 );
@@ -31,7 +50,8 @@ const wagmiClient = createClient({
 	autoConnect: true,
 	connectors,
 	provider,
-	hardhat
+	hardhat,
+	ganache,
 });
 
 export { WagmiConfig, RainbowKitProvider };

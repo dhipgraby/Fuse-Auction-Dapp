@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { createERC20Auction } from '../../hooks/contracts/FuseAuction';
 
-const CreateERC20Auction = () => {
+const CreateERC20Auction = ({
+    auctionContract
+}) => {
     const [itemId, setItemId] = useState('');
     const [biddingTime, setBiddingTime] = useState('');
     const [minimumBid, setMinimumBid] = useState('');
@@ -10,7 +11,11 @@ const CreateERC20Auction = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createERC20Auction(itemId, biddingTime, minimumBid, nftContract, tokenAddress);
+        try {
+            await auctionContract.createERC20Auction(itemId, biddingTime, minimumBid, nftContract, tokenAddress);
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return (

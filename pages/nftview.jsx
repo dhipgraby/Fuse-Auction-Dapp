@@ -1,11 +1,11 @@
 import styles from "../styles/Home.module.css";
-import NFTContract from "../components/interfaces/NFTContract";
+import NFTInterface from "../components/interfaces/NFTInterface";
 
 export default function Nftview() {
     return (
         <div>
             <main className={styles.main}>
-                <NFTContract />
+                <NFTInterface />
             </main>
         </div>
     );

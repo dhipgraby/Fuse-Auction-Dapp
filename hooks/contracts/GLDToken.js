@@ -2,55 +2,47 @@ import { ethers } from 'ethers';
 import GLDTokenABI from './GLDTokenABI.json';
 import { GLDTokenAddress } from './ContractAddresses';
 
-// Connect to Ethereum provider
-export const connectToEthereum = async () => {
-  if (window.ethereum) {
+class GLDToken {
+  constructor() {
+    this.tokenContract = null;
+  }
+
+  async connect() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    return provider;
-  } else {
-    throw new Error('No Ethereum provider found');
+    const signer = provider.getSigner();
+    this.tokenContract = new ethers.Contract(GLDTokenAddress, GLDTokenABI, signer);
   }
-};
 
-// Get the GLDToken contract instance
-export const getGLDTokenContract = async (provider) => {
-  const signer = provider.getSigner();
-  const GLDTokenContract = new ethers.Contract(
-    GLDTokenAddress,
-    GLDTokenABI,
-    signer
-  );
-  return GLDTokenContract;
-};
+  async getBalance(account) {
+    if (!this.tokenContract) await this.connect();
+    const balance = await this.tokenContract.balanceOf(account);
+    return balance;
+  }
 
-// Get the balance of an account
-export const getBalance = async (contract, account) => {
-  const balance = await contract.balanceOf(account);
-  return balance;
-};
+  async approveForAll(tokenAddress, spender) {
+    if (!this.tokenContract) await this.connect();
+    const tx = await this.tokenContract.approveForAll(tokenAddress, spender);
+    await tx.wait();
+  }
 
-// Approve a spender for an ERC20 token
-export const approveForAll = async (contract, tokenAddress, spender) => {
-  const tx = await contract.approveForAll(tokenAddress, spender);
-  await tx.wait();
-};
+  async approve(account, amount) {
+    if (!this.tokenContract) await this.connect();
+    const tx = await this.tokenContract.approve(account, amount);
+    await tx.wait();
+  }
 
-// Approve a spender for an ERC20 token
-export const approve = async (contract, account, amount) => {
-  const tx = await contract.approve(account, amount);
-  await tx.wait();
-};
+  async mintTokens(account, amount) {
+    if (!this.tokenContract) await this.connect();
+    const tx = await this.tokenContract.transfer(account, amount);
+    await tx.wait();
+  }
 
-// Mint tokens to an address
-// Approve a spender for an ERC20 token
-export const mintTokens = async (contract, account, amount) => {
-  const tx = await contract.transfer(account, amount);
-  await tx.wait();
-};
+  async accountAllowance(owner, address) {
+    if (!this.tokenContract) await this.connect();
+    const allowance = await this.tokenContract.allowance(owner, address);
+    return ethers.utils.formatEther(allowance.toString());
+  }
+}
 
-// CHECK ALLOWANCE
-export const accountAllowance = async (contract, owner, address) => {
-  const allowance = await contract.allowance(owner, address);
-  return allowance.toString()
-};
+export default GLDToken;

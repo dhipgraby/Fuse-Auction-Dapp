@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { bid } from '../../hooks/contracts/FuseAuction';
 
-const BidNativeToken = () => {
+const BidNativeToken = ({
+  auctionContract
+}) => {
   const [auctionId, setAuctionId] = useState('');
   const [bidAmount, setBidAmount] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await bid(auctionId, bidAmount);
+    try {
+      await auctionContract.bid(auctionId, bidAmount);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

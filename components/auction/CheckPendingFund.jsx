@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { checkPendingFund } from '../../hooks/contracts/FuseAuction';
 
-const CheckPendingFund = () => {
+const CheckPendingFund = ({ auctionContract }) => {
     const [auctionId, setAuctionId] = useState('');
     const [userAddress, setUserAddress] = useState('');
 
     const handleCheck = async () => {
-        await checkPendingFund(auctionId, userAddress);
+        try {
+            await auctionContract.checkPendingFund(auctionId, userAddress);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

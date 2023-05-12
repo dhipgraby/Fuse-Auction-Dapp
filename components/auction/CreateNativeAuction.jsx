@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { createNativeAuction } from '../../hooks/contracts/FuseAuction';
 
-const CreateNativeAuction = () => {
+const CreateNativeAuction = ({
+  auctionContract
+}) => {
   const [itemId, setItemId] = useState('');
   const [biddingTime, setBiddingTime] = useState('');
   const [minimumBid, setMinimumBid] = useState('');
@@ -9,7 +10,11 @@ const CreateNativeAuction = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createNativeAuction(itemId, biddingTime, minimumBid, nftContract);
+    try {
+      await auctionContract.createNativeAuction(itemId, biddingTime, minimumBid, nftContract);
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (

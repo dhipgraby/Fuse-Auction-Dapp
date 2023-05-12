@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getAuctionId } from '../../hooks/contracts/FuseAuction';
 
-const GetAuctionId = () => {
+const GetAuctionId = ({
+  auctionContract
+}) => {
 
   const [auctionId, setAuctionId] = useState("")
 
   useEffect(() => {
     async function fetchAuctionId() {
-      const currentId = await getAuctionId();
-      setAuctionId(currentId);
+      try {
+        const currentId = await auctionContract.getAuctionId();
+        setAuctionId(currentId);
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     fetchAuctionId();
@@ -16,7 +21,7 @@ const GetAuctionId = () => {
   return (
     <div>
       <p>Current Auction ID:
-        
+
         <small className='badge-dark'>{auctionId}</small></p>
       {/* Display auction ID here */}
     </div>

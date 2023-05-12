@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { claimAuction } from '../../hooks/contracts/FuseAuction';
 
-const ClaimAuction = () => {
+const ClaimAuction = ({
+    auctionContract
+}) => {
     const [auctionId, setAuctionId] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await claimAuction(auctionId);
+        try {
+            await auctionContract.claimAuction(auctionId);
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return (

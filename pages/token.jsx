@@ -1,11 +1,11 @@
 import styles from "../styles/Home.module.css";
-import GLDToken from "../components/interfaces/GLDToken"
+import TokenInterface from "../components/interfaces/TokenInterface"
 
 export default function Token() {
     return (
         <div>            
             <main className={styles.main}>
-                <GLDToken />
+                <TokenInterface />
             </main>
         </div>
     );

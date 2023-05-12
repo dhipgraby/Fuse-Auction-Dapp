@@ -68,8 +68,11 @@ input {
 	padding: 5px 10px;
 	border-radius: 20px;
 	color: white;
-	margin-left: 10px;
 	width: fit-content;
+}
+
+.activeBtn {
+	border: none !important;
 }
 
 .success-btn {
@@ -90,5 +93,17 @@ input {
 	letter-spacing: 1px;
 	background-color: #3977c9 !important;
 	text-shadow: 1px 1px 5px black;
+	color: white !important;
+}
+
+.activeTap {
+	background-color: black !important; 
+	border: none !important;
+}
+
+.tap-btn {
+	letter-spacing: 1px;
+	border: solid 1px white;
+	background-color: transparent;	
 	color: white !important;
 }

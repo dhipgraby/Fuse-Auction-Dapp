@@ -1,10 +1,14 @@
 import React from 'react';
-import { withdrawPendingReturns } from '../../hooks/contracts/FuseAuction';
 
-
-const WithdrawPendingReturns = () => {
+const WithdrawPendingReturns = ({
+  auctionContract
+}) => {
   const handleWithdraw = async () => {
-    await withdrawPendingReturns();
+    try {
+      await auctionContract.withdrawPendingReturns();
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (
