@@ -4,7 +4,7 @@ FuseAuction is a decentralized auction platform built on Ethereum that allows us
 
 ## Live Dapp version on Vercel - Fuse Sparknet testnet 🚀
 
-[Live Fuse Auction](https://fuse-auction-dapp.vercel.app/)
+Live Vercel application here 👉: [Live Fuse Auction](https://fuse-auction-dapp.vercel.app/)
 
 Notes: 
 - You will need to import Deployer address to Metamask using PRIV_KEY "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"   
