@@ -29,7 +29,7 @@ const GetAllowance = ({
                 <button className="blue-btn" onClick={handleSubmit}>Check</button>
 
                 {(allowance) && (
-                    <div className="badge-dark pt-1 mt-1">
+                    <div className="badge-dark pt-1">
                         <p>Allowance: {allowance}</p>
                     </div>
                 )}

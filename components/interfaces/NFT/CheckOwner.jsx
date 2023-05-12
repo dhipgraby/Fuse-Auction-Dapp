@@ -11,6 +11,7 @@ const CheckOwner = ({
             const owner = await nftContract.ownerOf(tokenId);
             setAddress(owner)
         } catch (err) {
+            setAddress('No owner')
             console.error(err);
         }
     };

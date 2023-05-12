@@ -6,11 +6,14 @@ const MintController = ({
     const [recipientAddress, setRecipientAddress] = useState("");
 
     const handleSafeMint = async () => {
+        console.log(recipientAddress);
         if (recipientAddress == "") {
             console.log('Address is empty');
             return
         }
+        
         try {
+            console.log('minting:' + nftContract);
             await nftContract.safeMint(recipientAddress);
         } catch (err) {
             console.error(err);
