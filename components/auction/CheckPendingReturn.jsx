@@ -15,14 +15,15 @@ const CheckPendingReturn = ({ auctionContract }) => {
 
   return (
     <div>
-      <h2>Check Pending Return</h2>
+      <p>Check Pending Native Returns</p>
       <input
+        className='mt-1'
         type="text"
         placeholder="User Address"
         value={userAddress}
         onChange={(e) => setUserAddress(e.target.value)}
       />
-      <button onClick={handleCheck}>Check</button>
+      <button className='blue-btn' onClick={handleCheck}>Check</button>
       {(pendings) && (
         <p>Pending Amount: {pendings}</p>
       )}

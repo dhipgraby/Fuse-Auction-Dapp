@@ -4,7 +4,20 @@ const GetAuctionId = ({
   auctionContract
 }) => {
 
+  const noId = "0x0000000000000000000000000000000000000000000000000000000000000000"
   const [auctionId, setAuctionId] = useState("")
+
+
+  function shortStr(str) {
+    if (str.length <= 8) {
+      return str;
+    }
+
+    const firstFour = str.substring(0, 4);
+    const lastFour = str.substring(str.length - 4);
+
+    return `${firstFour}...${lastFour}`;
+  }
 
   useEffect(() => {
     async function fetchAuctionId() {
@@ -15,14 +28,16 @@ const GetAuctionId = ({
         console.error(error)
       }
     }
-
     fetchAuctionId();
   }, []);
   return (
     <div>
       <p>Current Auction ID:
-
-        <small className='badge-dark'>{auctionId}</small></p>
+        <small
+          className='ml-1 badge-dark pointer'
+          title='click to copy'
+          onClick={() => navigator.clipboard.writeText(auctionId)}
+        >{(auctionId == noId) ? 'Not current auction started' : shortStr(auctionId)} </small></p>
       {/* Display auction ID here */}
     </div>
   );

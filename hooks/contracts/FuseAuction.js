@@ -23,6 +23,7 @@ export default class FuseAuctionContract {
 
     async createNativeAuction(itemId, biddingTime, minimumBid, nftContract) {
         await this.checkConnect();
+        minimumBid = ethers.utils.parseEther(minimumBid)
         const tx = await this.contract.createNativeAuction(itemId, biddingTime, minimumBid, nftContract);
         await tx.wait();
     }
@@ -60,7 +61,21 @@ export default class FuseAuctionContract {
     async getAuction(auctionId) {
         await this.checkConnect();
         const auction = await this.contract.auctionsMapping(auctionId);
-        return auction;
+        const nftId = auction.itemId.toString()
+        const highestBid = auction.highestBid.toString()
+        const auctionEndTime = auction.auctionEndTime
+        const current = {
+            owner: auction.seller,
+            nftContract: auction.nftContract,
+            tokenContract: (auction.ERC20Contract == 0x0000000000000000000000000000000000000000) ? 'No ERC20 auction' : auction.ERC20Contract,
+            nftId: nftId,
+            highestBid: (!auction.isERC20) ? ethers.utils.formatEther(highestBid) : highestBid,
+            highestBidder: (auction.highestBidder == 0x0000000000000000000000000000000000000000) ? 'No bidder' : auction.highestBidder,
+            auctionEndTime: auctionEndTime,
+            ended: auction.ended,
+            isERC20: auction.isERC20,
+        }
+        return current;
     }
 
     async claimAuction(auctionId) {
@@ -88,10 +103,10 @@ export default class FuseAuctionContract {
         return funds;
     }
 
-    async checkPendingFund(auctionId, userAddress) {
+    async checkPendingFunds(auctionId) {
         await this.checkConnect();
-        const pendingFund = await this.contract.checkPendingFund(auctionId, userAddress);
-        const funds = ethers.utils.formatEther(pendingFund)
-        return funds;
+        const pendingFund = await this.contract.checkPendingFunds(auctionId);
+        console.log(pendingFund);
+        return pendingFund.toString();
     }
 }

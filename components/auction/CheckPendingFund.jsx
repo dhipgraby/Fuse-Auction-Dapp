@@ -2,32 +2,32 @@ import React, { useState } from 'react';
 
 const CheckPendingFund = ({ auctionContract }) => {
     const [auctionId, setAuctionId] = useState('');
-    const [userAddress, setUserAddress] = useState('');
+    const [funds, setFunds] = useState('');
 
     const handleCheck = async () => {
         try {
-            await auctionContract.checkPendingFund(auctionId, userAddress);
+            const _funds = await auctionContract.checkPendingFunds(auctionId);
+            setFunds(_funds)
         } catch (error) {
             console.error(error);
         }
     };
 
     return (
-        <div>
-            <h2>Check Pending Fund</h2>
+        <div className='mt-2'>
+            <p>Check Pending ERC20 tokens</p>
             <input
                 type="text"
                 placeholder="Auction ID"
                 value={auctionId}
                 onChange={(e) => setAuctionId(e.target.value)}
             />
-            <input
-                type="text"
-                placeholder="User Address"
-                value={userAddress}
-                onChange={(e) => setUserAddress(e.target.value)}
-            />
-            <button onClick={handleCheck}>Check</button>
+            <button className='blue-btn' onClick={handleCheck}>Check</button>
+            {(funds) &&
+                (<div className='badge-dark mt-2'>
+                    <p>Funds: {funds}</p>
+                </div>)
+            }
         </div>
 
     );

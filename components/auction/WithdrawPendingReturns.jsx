@@ -13,8 +13,8 @@ const WithdrawPendingReturns = ({
 
   return (
     <div>
-      <h2>Withdraw Pending Returns</h2>
-      <button onClick={handleWithdraw}>Withdraw</button>
+      <p>Withdraw Pending Returns Native token</p>
+      <button className='primary-btn mt-1' onClick={handleWithdraw}>Withdraw</button>
     </div>
   );
 };

@@ -25,14 +25,14 @@ const CheckOwner = ({
                     placeholder="NFT id"
                 />
                 <button className="blue-btn" onClick={handleSubmit}>Check owner</button>
-                {(adddress) &&
-                    <div className="badge-dark">
-                        <p>
-                            Owner : {adddress}
-                        </p>
-                    </div>
-                }
             </div>
+            {(adddress) &&
+                <div className="badge-dark mt-2">
+                    <p>
+                        Owner : {adddress}
+                    </p>
+                </div>
+            }
         </div>
     );
 }

@@ -10,19 +10,19 @@ const WithdrawPendingFunds = ({
       await auctionContract.withdrawPendingFunds(auctionId);
     } catch (error) {
       console.error(error)
-    }    
+    }
   };
 
   return (
-    <div>
-      <h2>Withdraw Pending Funds</h2>
+    <div className='mt-2 border-light'>
+      <p>Withdraw Pending Funds</p>
       <input
         type="text"
         placeholder="Auction ID"
         value={auctionId}
         onChange={(e) => setAuctionId(e.target.value)}
       />
-      <button onClick={handleWithdraw}>Withdraw</button>
+      <button className='primary-btn' onClick={handleWithdraw}>Withdraw</button>
     </div>
   );
 };

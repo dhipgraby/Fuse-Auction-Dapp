@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import CreateNativeAuction from './auction/CreateNativeAuction';
 import CreateERC20Auction from './auction/CreateERC20Auction';
@@ -12,8 +12,8 @@ import WithdrawPendingReturns from './auction/WithdrawPendingReturns';
 import WithdrawPendingFunds from './auction/WithdrawPendingFunds';
 import CheckPendingReturn from './auction/CheckPendingReturn';
 import CheckPendingFund from './auction/CheckPendingFund';
-import { fuseAuctionAddress, NFT_ContractAddress, GLDTokenAddress } from '../hooks/contracts/ContractAddresses';
 import FuseAuctionContract from '../hooks/contracts/FuseAuction';
+import GetContracts from './GetContracts';
 
 const AuctionComponents = () => {
 
@@ -32,7 +32,6 @@ const AuctionComponents = () => {
         'Create Auctions',
         'Bid on Auctions',
         'Claim & Withdraw Auctions',
-        'Check Pending',
         'All Auctions',
     ];
 
@@ -41,7 +40,6 @@ const AuctionComponents = () => {
             case 0:
                 return (
                     <>
-                        <GetAuctionId auctionContract={auctionContract} />
                         <GetAuction auctionContract={auctionContract} />
                     </>
                 )
@@ -63,18 +61,24 @@ const AuctionComponents = () => {
                 return (
                     <>
                         <ClaimAuction auctionContract={auctionContract} />
-                        <WithdrawPendingReturns auctionContract={auctionContract} />
-                        <WithdrawPendingFunds auctionContract={auctionContract} />
+                        <hr />
+                        <p>Funds from bidders holded by Escrow contracts. Unsuccesful bids</p>
+                        <div className='row'>
+
+                            <div>
+                                <h2>Check funds</h2>
+                                <CheckPendingReturn auctionContract={auctionContract} />
+                                <CheckPendingFund auctionContract={auctionContract} />
+                            </div>
+                            <div className='ta-c w-60'>
+                                <h2>Withdraw funds</h2>
+                                <WithdrawPendingReturns auctionContract={auctionContract} />
+                                <WithdrawPendingFunds auctionContract={auctionContract} />
+                            </div>
+                        </div>
                     </>
                 );
             case 4:
-                return (
-                    <>
-                        <CheckPendingReturn auctionContract={auctionContract} />
-                        <CheckPendingFund auctionContract={auctionContract} />
-                    </>
-                );
-            case 5:
                 return (
                     <>
                         <h1>All Auction</h1>
@@ -89,11 +93,12 @@ const AuctionComponents = () => {
     return (
         <div>
             <h1>Fuse Auction DApp</h1>
-            <div className='mb-2'>
-                <p className='mb-2'>Fuse Contract Address : <span className='badge-dark'>{fuseAuctionAddress}</span></p>
-                <p className='mb-2'>NFT Contract Address : <span className='badge-dark'>{NFT_ContractAddress}</span></p>
-                <p className='mb-2'>Token Contract Address : <span className='badge-dark'>{GLDTokenAddress}</span></p>
+
+            <GetContracts />
+            <div className='mt-2 mb-2'>
+                <GetAuctionId auctionContract={auctionContract} />
             </div>
+
             <div className="tabs">
                 {tabs.map((tab, index) => (
                     <button

@@ -28,19 +28,24 @@ const GetAuction = ({
             <button className="blue-btn" type="submit">Get Details</button>
             <br />
             {(current !== null) && (
-                <div className='mt-2 badge-dark p-2'>
-                    <p>Owner: {current.owner}</p>
-                    <p>NFT Contract: {current.nftContract}</p>
-                    <p>Token Contract: {current.tokenContract}</p>
-                    <p>NFT ID: {current.nftId}</p>
-                    <p>Highest Bid: {current.highestBid}</p>
-                    <p>Highest Bidder: {current.highestBidder}</p>
-                    <p>
-                        Auction End Time: {current.auctionEndTime.toString()}
-                    </p>
-                    <p>Ended: {current.ended ? "Yes" : "No"}</p>
-                    <p>Is ERC20: {current.isERC20 ? "Yes" : "No"}</p>
-                </div>
+                <>
+                    {(current.isERC20) && (
+                        <h3 className='mt-2'>ERC20 Auction type</h3>
+                    )}
+                    <div className='mt-2 badge-dark p-2'>
+                        <p>Owner: {current.owner}</p>
+                        <p>NFT Contract: {current.nftContract}</p>
+                        <p>Token Contract: {current.tokenContract}</p>
+                        <p>NFT ID: {current.nftId}</p>
+                        <p>Highest Bid: {current.highestBid}</p>
+                        <p>Highest Bidder: {current.highestBidder}</p>
+                        <p>
+                            Auction End Time: {current.auctionEndTime.toString()}
+                        </p>
+                        <p>Ended: {current.ended ? "Yes" : "No"}</p>
+                        <p>Is ERC20: {current.isERC20 ? "Yes" : "No"}</p>
+                    </div>
+                </>
             )}
 
         </form>

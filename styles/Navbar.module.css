@@ -23,3 +23,9 @@
 	background-color: black;
 	border: solid 1px black;
 }
+
+.activeNav {
+	color: white !important;
+	background-color: black;
+	border: solid 1px black !important;
+}
