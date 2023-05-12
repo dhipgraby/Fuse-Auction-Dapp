@@ -14,41 +14,45 @@ const GetContracts = () => {
     }
 
     return (
-        <div className='row'>
-            <div>
-                <p>Fuse Contract Address :
-                    <span
-                        className='badge-dark pointer'
-                        title='click to copy'
-                        onClick={() => navigator.clipboard.writeText(fuseAuctionAddress)}>
-                        {shortAddr(fuseAuctionAddress)}
-                    </span>
-                </p>
-            </div>
+        <>
+            <b>Contract Address:</b>
+            <div className='row mt-2'>
+                <div>
+                    <p>Auction :
+                        <span
+                            className='badge-dark pointer ml-1'
+                            title='click to copy'
+                            onClick={() => navigator.clipboard.writeText(fuseAuctionAddress)}>
+                            {shortAddr(fuseAuctionAddress)}
+                        </span>
+                    </p>
+                </div>
 
-            <div>
-                <p>NFT Contract Address :
-                    <span
-                        className='badge-dark pointer'
-                        title='click to copy'
-                        onClick={() => navigator.clipboard.writeText(NFT_ContractAddress)}>
-                        {shortAddr(NFT_ContractAddress)}
-                    </span>
-                </p>
-            </div>
+                <div>
+                    <p>NFT:
+                        <span
+                            className='badge-dark pointer ml-1'
+                            title='click to copy'
+                            onClick={() => navigator.clipboard.writeText(NFT_ContractAddress)}>
+                            {shortAddr(NFT_ContractAddress)}
+                        </span>
+                    </p>
+                </div>
 
-            <div>
-                <p>Token Contract Address :
-                    <span
-                        className='badge-dark pointer'
-                        title='click to copy'
-                        onClick={() => navigator.clipboard.writeText(GLDTokenAddress)}>
-                        {shortAddr(GLDTokenAddress)}
-                    </span>
-                </p>
-            </div>
+                <div>
+                    <p>Token :
+                        <span
+                            className='badge-dark pointer ml-1'
+                            title='click to copy'
+                            onClick={() => navigator.clipboard.writeText(GLDTokenAddress)}>
+                            {shortAddr(GLDTokenAddress)}
+                        </span>
+                    </p>
+                </div>
 
-        </div>
+            </div>
+        </>
+
     );
 };
 
