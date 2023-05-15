@@ -44,4 +44,20 @@ export default class NFTContract {
         const owner = await this.contract.ownerOf(tokenId);
         return owner;
     }
+
+    async ownerTokens(owner) {
+        if (owner === "" || owner === null || owner === undefined) return
+        await this.checkConnect();
+        let tokenIds = [];
+
+        const totalOwned = await this.contract.balanceOf(owner);
+        const _total = await totalOwned.toString()
+
+        for (var i = 0; i < Number(_total); i++) {
+            const tokenId = await this.contract.tokenOfOwnerByIndex(owner, i)
+            tokenIds.push(tokenId.toString())
+        }
+
+        return tokenIds;
+    }
 }
