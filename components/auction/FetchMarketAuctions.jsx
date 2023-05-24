@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { shortStr } from '../../helpers/functions';
 
 const FetchMarketAuctions = ({
   auctionContract
@@ -47,9 +48,14 @@ const FetchMarketAuctions = ({
               return (
                 <>
                   <div className='mt-2'>
-                  <b>Auction Id:</b>
-                  <br />
-                  <small>{ids[i]}</small>
+                    <b>Auction Id:</b>
+                    <br />
+                    <small
+                      className='pointer'
+                      title='click to copy'
+                      onClick={() => navigator.clipboard.writeText(ids[i])}>
+                      {shortStr(ids[i])}
+                    </small>
                   </div>
                   <div className='mt-1 badge-dark p-2'>
                     <p>Owner: {auction.owner}</p>

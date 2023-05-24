@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { shortStr } from '../../helpers/functions';
 
 const GetAuction = ({
     auctionContract
@@ -15,6 +16,24 @@ const GetAuction = ({
             console.error(error)
         }
     };
+
+    useEffect(() => {
+        async function fetchAuctionId() {
+            try {
+                const currentId = await auctionContract.getAuctionId();
+                try {
+                    const auction = await auctionContract.getAuction(currentId);
+                    setCurrent(auction)
+                    setAuctionId(currentId)
+                } catch (error) {
+                    console.error(error)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchAuctionId();
+    }, []);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -33,6 +52,9 @@ const GetAuction = ({
                         <h3 className='mt-2'>ERC20 Auction type</h3>
                     )}
                     <div className='mt-2 badge-dark p-2'>
+                        <p className='mb-1'>
+                            <b>ID: {shortStr(auctionId)}</b>
+                        </p>
                         <p>Owner: {current.owner}</p>
                         <p>NFT Contract: {current.nftContract}</p>
                         <p>Token Contract: {current.tokenContract}</p>

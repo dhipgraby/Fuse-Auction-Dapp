@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { shortStr } from '../../helpers/functions';
 
 const GetAuctionId = ({
   auctionContract
@@ -6,18 +7,6 @@ const GetAuctionId = ({
 
   const noId = "0x0000000000000000000000000000000000000000000000000000000000000000"
   const [auctionId, setAuctionId] = useState("")
-
-
-  function shortStr(str) {
-    if (str.length <= 8) {
-      return str;
-    }
-
-    const firstFour = str.substring(0, 4);
-    const lastFour = str.substring(str.length - 4);
-
-    return `${firstFour}...${lastFour}`;
-  }
 
   useEffect(() => {
     async function fetchAuctionId() {
